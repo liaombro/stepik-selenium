@@ -19,7 +19,7 @@ class ProductPage(BasePage):
 
         success_message = self.browser.find_element(*locator_message)
         
-        assert product_title in success_message.text, "Success message should be displayed after 'Add to Cart' button is pressed"        
+        assert product_title == success_message.text, "Success message should contain product title"        
     
     def get_product_title(self):
         locator_product_title = ProductPageLocators.PRODUCT_TITLE

@@ -12,7 +12,7 @@ class LoginPageLocators:
 class ProductPageLocators:
     URL = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019'
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-add-to-basket")
-    SUCCESS_MESSAGE = (By.XPATH, "//*[contains(@class, 'alert-success')][1]")
+    SUCCESS_MESSAGE = (By.XPATH, "//*[contains(@class, 'alert-success')][1]//strong")
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".product_main h1")
     CART_TOTAL_MESSAGE = (By.CSS_SELECTOR, ".alert-info strong")
     PRODUCT_PRICE = (By.CSS_SELECTOR,  ".product_main .price_color")
