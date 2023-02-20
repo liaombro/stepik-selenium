@@ -1,10 +1,14 @@
 from selenium.webdriver.common.by import By
+from page_objects.main_page import MainPage
 link = "http://selenium1py.pythonanywhere.com/"
 
-def go_to_login_page(browser):
-    login_link = browser.find_element(By.CSS_SELECTOR, "#login_link")
-    login_link.click()
-
 def test_guest_can_go_to_login_page(browser):
-    browser.get(link)
-    go_to_login_page(browser)
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.go_to_login_page()
+    
+def test_guest_should_see_login_link(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.should_be_login_link()
