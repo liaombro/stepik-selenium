@@ -1,1 +1,3 @@
 stepik-project
+__pycache__
+.pytest_cache
