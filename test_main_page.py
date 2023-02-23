@@ -1,11 +1,11 @@
 import pytest
 
 from selenium.webdriver.common.by import By
-from page_objects.basket_page import BasketPage
-from page_objects.main_page import MainPage
-from page_objects.login_page import LoginPage
-from page_objects.locators import BasketPageLocators, MainPageLocators, LoginPageLocators, ProductPageLocators
-from page_objects.product_page import ProductPage
+from pages.basket_page import BasketPage
+from pages.main_page import MainPage
+from pages.login_page import LoginPage
+from pages.locators import BasketPageLocators, MainPageLocators, LoginPageLocators, ProductPageLocators
+from pages.product_page import ProductPage
 
 @pytest.mark.login_guest
 class TestLoginFromMainPage:
