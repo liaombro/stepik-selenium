@@ -7,7 +7,7 @@ import pytest
 from faker import Faker
 
 URL_LIST = ProductPageLocators.URL_LIST
-URL_LIST[6] = pytest.param(URL_LIST[6], marks=pytest.mark.xfail) 
+URL_LIST[7] = pytest.param(URL_LIST[7], marks=pytest.mark.xfail) 
 @pytest.mark.parametrize('link', ProductPageLocators.URL_LIST)
 
 @pytest.mark.need_review
@@ -46,8 +46,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     product_page.is_disappeared(ProductPageLocators.SUCCESS_MESSAGE)
 
 def test_guest_should_see_login_link_on_product_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-    page = ProductPage(browser, link)
+    page = ProductPage(browser, ProductPageLocators.URL)
     
     page.open()
     
