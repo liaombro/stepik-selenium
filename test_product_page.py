@@ -1,6 +1,7 @@
+from pages.basket_page import BasketPage
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
-from pages.locators import ProductPageLocators, LoginPageLocators
+from pages.locators import ProductPageLocators, LoginPageLocators, BasketPageLocators
 
 import pytest
 from faker import Faker
@@ -9,6 +10,7 @@ URL_LIST = ProductPageLocators.URL_LIST
 URL_LIST[6] = pytest.param(URL_LIST[6], marks=pytest.mark.xfail) 
 @pytest.mark.parametrize('link', ProductPageLocators.URL_LIST)
 
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()
@@ -51,6 +53,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     
     page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     product_page = ProductPage(browser, ProductPageLocators.URL)
     product_page.open() 
@@ -59,6 +62,16 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     
     login_page = LoginPage(browser, LoginPageLocators)
     login_page.should_be_login_page()
+    
+@pytest.mark.need_review
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    product_page = ProductPage(browser, ProductPageLocators.URL)
+    product_page.open()
+    
+    product_page.go_to_basket_page()
+    
+    basket_page = BasketPage(browser, BasketPageLocators.URL)
+    basket_page.should_be_empty_cart()
 
 class TestUserAddToBasketFromProductPage:
     
@@ -74,7 +87,7 @@ class TestUserAddToBasketFromProductPage:
         
         login_page.should_be_authorized_user()
 
-    @pytest.mark.new
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, ProductPageLocators.URL)
         product_page.open()

@@ -34,11 +34,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page = BasketPage(browser, BasketPageLocators.URL)
     basket_page.should_be_empty_cart()
     
-def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
-    product_page = ProductPage(browser, ProductPageLocators.URL)
-    product_page.open()
-    
-    product_page.go_to_basket_page()
-    
-    basket_page = BasketPage(browser, BasketPageLocators.URL)
-    basket_page.should_be_empty_cart()
