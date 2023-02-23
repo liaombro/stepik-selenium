@@ -68,7 +68,6 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page = LoginPage(browser, LoginPageLocators)
     login_page.should_be_login_page()
 
-@pytest.mark.new
 class TestUserAddToBasketFromProductPage:
     
     @pytest.fixture(scope="function", autouse=True)
@@ -82,7 +81,8 @@ class TestUserAddToBasketFromProductPage:
         login_page.register_new_user(email, password)
         
         login_page.should_be_authorized_user()
-        
+
+    @pytest.mark.new
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, ProductPageLocators.URL)
         product_page.open()

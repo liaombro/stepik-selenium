@@ -18,6 +18,7 @@ def browser(request):
     language = request.config.getoption("language")
     print(f"Selected language: {language}")
     options = ChromeOptions()
+    #options.add_argument('--headless')
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
     driver = webdriver.Chrome(options=options)
     yield driver
