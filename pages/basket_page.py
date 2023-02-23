@@ -1,5 +1,5 @@
-from page_objects.base_page import BasePage
-from page_objects.locators import BasePageLocators, BasketPageLocators
+from pages.base_page import BasePage
+from pages.locators import BasePageLocators, BasketPageLocators
 
 class BasketPage(BasePage):
 

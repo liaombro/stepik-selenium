@@ -1,6 +1,6 @@
-from page_objects.product_page import ProductPage
-from page_objects.login_page import LoginPage
-from page_objects.locators import ProductPageLocators, LoginPageLocators
+from pages.product_page import ProductPage
+from pages.login_page import LoginPage
+from pages.locators import ProductPageLocators, LoginPageLocators
 
 import pytest
 from faker import Faker

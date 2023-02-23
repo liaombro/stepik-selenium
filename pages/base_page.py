@@ -4,7 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import TimeoutException
 
-from page_objects.locators import BasePageLocators
+from pages.locators import BasePageLocators
 class BasePage:
     def __init__(self, browser : WebDriver, url : str, timeout=10):
         self.browser = browser
