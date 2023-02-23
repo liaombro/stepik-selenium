@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+import pytest 
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     BASKET_LINK = (By.CSS_SELECTOR, "a[href*='basket']:nth-child(1)")
@@ -19,6 +19,7 @@ class LoginPageLocators(BasePageLocators):
     REGISTRATION_SUBMIT_BUTTON = (By.CSS_SELECTOR, "button[name='registration_submit']")
 class ProductPageLocators(BasePageLocators):
     URL = 'http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/'
+    URL_LIST = [f"http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo={promo_id}" for promo_id in range(10)] 
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-add-to-basket")
     SUCCESS_MESSAGE = (By.XPATH, "//*[contains(@class, 'alert-success')][1]//strong")
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".product_main h1")

@@ -5,17 +5,9 @@ from pages.locators import ProductPageLocators, LoginPageLocators
 import pytest
 from faker import Faker
 
-@pytest.mark.skip
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
-                                  pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6", marks=pytest.mark.xfail),
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
+URL_LIST = ProductPageLocators.URL_LIST
+URL_LIST[6] = pytest.param(URL_LIST[6], marks=pytest.mark.xfail) 
+@pytest.mark.parametrize('link', ProductPageLocators.URL_LIST)
 
 def test_guest_can_add_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
