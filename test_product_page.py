@@ -1,5 +1,7 @@
 from page_objects.product_page import ProductPage
-from page_objects.locators import ProductPageLocators
+from page_objects.login_page import LoginPage
+from page_objects.locators import ProductPageLocators, LoginPageLocators
+
 import pytest
 
 @pytest.mark.skip
@@ -48,3 +50,19 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     
     product_page.is_disappeared(ProductPageLocators.SUCCESS_MESSAGE)
 
+def test_guest_should_see_login_link_on_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    
+    page.open()
+    
+    page.should_be_login_link()
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    product_page = ProductPage(browser, ProductPageLocators.URL)
+    product_page.open() 
+    
+    product_page.go_to_login_page()
+    
+    login_page = LoginPage(browser, LoginPageLocators)
+    login_page.should_be_login_page()
