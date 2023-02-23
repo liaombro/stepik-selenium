@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
+    BASKET_LINK = (By.CSS_SELECTOR, "a[href*='basket']:nth-child(1)")
 class MainPageLocators(BasePageLocators):
     URL = 'http://selenium1py.pythonanywhere.com/'
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -19,3 +19,8 @@ class ProductPageLocators(BasePageLocators):
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".product_main h1")
     CART_TOTAL_MESSAGE = (By.CSS_SELECTOR, ".alert-info strong")
     PRODUCT_PRICE = (By.CSS_SELECTOR,  ".product_main .price_color")
+    
+class BasketPageLocators(BasePageLocators):
+    URL = 'http://selenium1py.pythonanywhere.com/ru/basket/'
+    FIRST_ITEM = (By.CSS_SELECTOR, ".basket-items > .row:nth-child(1)")
+    CART_IS_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")

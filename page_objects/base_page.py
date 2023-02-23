@@ -23,6 +23,10 @@ class BasePage:
             return False
         return True
 
+    def is_element_visible(self, locator):
+        element = self.browser.find_element(*locator)
+        return element.is_displayed()
+        
     def is_not_element_present(self, locator, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(
@@ -50,4 +54,7 @@ class BasePage:
         login_link_locator = BasePageLocators.LOGIN_LINK
         assert self.is_element_present(login_link_locator), "Login link is not presented"
 
-    
+    def go_to_basket_page(self):
+        basket_link_locator = BasePageLocators.BASKET_LINK
+        basket_link = self.browser.find_element(*basket_link_locator)
+        basket_link.click()
