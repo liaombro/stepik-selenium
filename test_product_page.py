@@ -3,6 +3,7 @@ from page_objects.login_page import LoginPage
 from page_objects.locators import ProductPageLocators, LoginPageLocators
 
 import pytest
+from faker import Faker
 
 @pytest.mark.skip
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -66,3 +67,35 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     
     login_page = LoginPage(browser, LoginPageLocators)
     login_page.should_be_login_page()
+
+@pytest.mark.new
+class TestUserAddToBasketFromProductPage:
+    
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser, faker):
+        
+        login_page = LoginPage(browser, LoginPageLocators.URL)
+        login_page.open()
+        email = faker.email()
+        password = faker.name()
+        
+        login_page.register_new_user(email, password)
+        
+        login_page.should_be_authorized_user()
+        
+    def test_user_can_add_product_to_basket(self, browser):
+        product_page = ProductPage(browser, ProductPageLocators.URL)
+        product_page.open()
+        
+        product_page.add_product_to_cart()
+        
+        product_page.should_be_success_message()
+        product_page.cart_total_should_be_equal_to_product_price()
+    
+    def test_user_cant_see_success_message(self, browser):
+        product_page = ProductPage(browser, ProductPageLocators.URL)
+        
+        product_page.open()
+        
+        product_page.is_not_element_present(ProductPageLocators.SUCCESS_MESSAGE)
+

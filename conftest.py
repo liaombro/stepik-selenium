@@ -3,6 +3,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver import ChromeOptions
 
+@pytest.fixture(scope='function', autouse=True)
+def faker_seed():
+    return int(time.time())
 
 
 def pytest_addoption(parser):

@@ -23,3 +23,13 @@ class LoginPage(BasePage):
         register_form = self.browser.find_element(*locator)
         
         assert register_form.is_displayed(), "Register form should be displayed"
+        
+    def register_new_user(self, email, password):
+        email_field = self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL)
+        email_field.send_keys(email)
+        password_field = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD1)
+        password_field.send_keys(password)
+        repeat_password_field = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD2)
+        repeat_password_field.send_keys(password)
+        submit_button = self.browser.find_element(*LoginPageLocators.REGISTRATION_SUBMIT_BUTTON)
+        submit_button.click()
